@@ -31,7 +31,7 @@ export default function ProfileScreen() {
             <Text style={styles.avatarText}>FX</Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={styles.name}>Fitsx Runner</Text>
+            <Text style={styles.name}>fitsx Runner</Text>
             <Text style={styles.email}>Member since 2026</Text>
           </View>
           <View style={styles.pill}>

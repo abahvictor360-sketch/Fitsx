@@ -1,4 +1,4 @@
-# Fitsx
+# fitsx
 
 A shoe store app for **iOS, Android and web**, built with Expo (React Native) and Expo Router.
 

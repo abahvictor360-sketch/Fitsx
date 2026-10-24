@@ -70,7 +70,7 @@ export function AnimatedSplash({ onFinish }: { onFinish: () => void }) {
         }}
       >
         <Text style={styles.brand}>
-          FITS<Text style={{ color: colors.accent }}>X</Text>
+          fits<Text style={{ color: colors.accent }}>x</Text>
         </Text>
         <Text style={styles.tagline}>Run Better. Be Stronger.</Text>
       </Animated.View>
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 8,
   },
-  brand: { fontFamily: font.extrabold, fontSize: 44, letterSpacing: 6, color: colors.white, marginTop: 8 },
+  brand: { fontFamily: font.extrabold, fontSize: 44, letterSpacing: 2, color: colors.white, marginTop: 4 },
   tagline: { fontFamily: font.medium, fontSize: 15, color: '#BFE6D2', marginTop: 2 },
   track: {
     position: 'absolute',

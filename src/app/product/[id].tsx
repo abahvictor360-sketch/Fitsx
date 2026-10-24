@@ -60,7 +60,7 @@ export default function ProductScreen() {
 
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/'));
   const share = async () => {
-    const message = `Check out the ${product.name} on Fitsx — ${formatPrice(product.price)}`;
+    const message = `Check out the ${product.name} on fitsx — ${formatPrice(product.price)}`;
     if (Platform.OS === 'web') {
       const nav = globalThis.navigator as Navigator | undefined;
       if (nav?.share) await nav.share({ title: product.name, text: message }).catch(() => {});

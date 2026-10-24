@@ -41,7 +41,7 @@ export default function CartScreen() {
 
       {ordered ? (
         <View style={styles.flexCenter}>
-          <EmptyState icon="check-circle" title="Order placed!" body="Thanks for shopping with Fitsx. Your new kicks are on the way." />
+          <EmptyState icon="check-circle" title="Order placed!" body="Thanks for shopping with fitsx. Your new kicks are on the way." />
           <Pressable style={[styles.checkout, { alignSelf: 'stretch', marginHorizontal: 20 }]} onPress={() => router.replace('/')}>
             <Text style={styles.checkoutText}>Continue Shopping</Text>
           </Pressable>
