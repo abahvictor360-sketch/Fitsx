@@ -7,6 +7,7 @@ import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CategoryTabs } from '../../components/CategoryTabs';
 import { HeroCarousel } from '../../components/HeroCarousel';
 import { IconButton } from '../../components/IconButton';
+import { Logo } from '../../components/Logo';
 import { ProductCard } from '../../components/ProductCard';
 import { Screen } from '../../components/Screen';
 import { homeCategories, products, type Category } from '../../data/products';
@@ -48,10 +49,13 @@ export default function HomeScreen() {
           <IconButton label="Menu" onPress={() => router.push('/profile')}>
             <Feather name="menu" size={20} color={colors.text} />
           </IconButton>
-          {cartCount > 0 && (
+          <Logo />
+          {cartCount > 0 ? (
             <IconButton label="Cart" badge={cartCount} onPress={() => router.push('/cart')}>
               <Feather name="shopping-bag" size={19} color={colors.text} />
             </IconButton>
+          ) : (
+            <View style={styles.headerSpacer} />
           )}
         </View>
 
@@ -86,6 +90,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   content: { paddingTop: 8, paddingBottom: 140 },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: PAD, minHeight: 44 },
+  headerSpacer: { width: 44 },
   section: { paddingHorizontal: PAD, marginTop: 18 },
   sectionHeader: {
     flexDirection: 'row',
