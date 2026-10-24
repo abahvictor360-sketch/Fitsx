@@ -3,6 +3,7 @@
 A shoe store app for **iOS, Android and web**, built with Expo (React Native) and Expo Router.
 
 ## Screens
+- **Splash** – native splash (logo on brand green) followed by an animated intro
 - **Home** – hero carousel, category tabs, Top Picks and New Arrivals
 - **Product** – photo, price, rating, description, color and size pickers, favorite, add to cart
 - **Shop** – full catalog with category filters

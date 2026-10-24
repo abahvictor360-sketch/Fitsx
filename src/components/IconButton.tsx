@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { font } from '../theme/fonts';
 import { colors } from '../theme/colors';
 
 type Props = { onPress?: () => void; children: ReactNode; badge?: number; label: string };
@@ -49,5 +50,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  badgeText: { fontSize: 10, fontWeight: '700', color: colors.primaryDark },
+  badgeText: { fontSize: 10, fontFamily: font.bold, color: colors.primaryDark },
 });

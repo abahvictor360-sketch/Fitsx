@@ -1,8 +1,9 @@
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { Category } from '../data/products';
 import { colors } from '../theme/colors';
+import { font } from '../theme/fonts';
 
 type IconDef = { set: 'feather' | 'mci'; name: string };
 
@@ -10,8 +11,8 @@ const ICONS: Record<Category, IconDef> = {
   Popular: { set: 'feather', name: 'zap' },
   Men: { set: 'feather', name: 'user' },
   Women: { set: 'mci', name: 'account-outline' },
+  Trail: { set: 'mci', name: 'image-filter-hdr-outline' },
   Formal: { set: 'mci', name: 'shoe-formal' },
-  Boots: { set: 'mci', name: 'hiking' },
   New: { set: 'mci', name: 'decagram-outline' },
 };
 
@@ -19,7 +20,7 @@ type Props = { items: Category[]; value: Category; onChange: (c: Category) => vo
 
 export function CategoryTabs({ items, value, onChange }: Props) {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row}>
+    <View style={styles.row}>
       {items.map((c) => {
         const active = c === value;
         const tint = active ? colors.white : colors.text;
@@ -29,19 +30,26 @@ export function CategoryTabs({ items, value, onChange }: Props) {
             {icon.set === 'feather' ? (
               <Feather name={icon.name as keyof typeof Feather.glyphMap} size={22} color={tint} />
             ) : (
-              <MaterialCommunityIcons name={icon.name as keyof typeof MaterialCommunityIcons.glyphMap} size={24} color={tint} />
+              <MaterialCommunityIcons name={icon.name as keyof typeof MaterialCommunityIcons.glyphMap} size={25} color={tint} />
             )}
             <Text style={[styles.label, { color: tint }]}>{c}</Text>
           </Pressable>
         );
       })}
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  row: { gap: 6, paddingHorizontal: 20 },
-  item: { width: 62, height: 66, borderRadius: 16, alignItems: 'center', justifyContent: 'center', gap: 6 },
-  active: { backgroundColor: colors.primary },
-  label: { fontSize: 11, fontWeight: '600' },
+  row: { flexDirection: 'row', justifyContent: 'space-between', gap: 4 },
+  item: { flex: 1, maxWidth: 70, aspectRatio: 0.95, borderRadius: 18, alignItems: 'center', justifyContent: 'center', gap: 6 },
+  active: {
+    backgroundColor: colors.primary,
+    shadowColor: colors.primary,
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 6,
+  },
+  label: { fontFamily: font.medium, fontSize: 11 },
 });

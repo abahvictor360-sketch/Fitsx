@@ -7,6 +7,7 @@ import { PageHeader } from '../../components/PageHeader';
 import { ProductGrid } from '../../components/ProductGrid';
 import { Screen } from '../../components/Screen';
 import { products } from '../../data/products';
+import { font } from '../../theme/fonts';
 import { colors } from '../../theme/colors';
 
 export default function SearchScreen() {
@@ -60,5 +61,5 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     marginBottom: 16,
   },
-  input: { flex: 1, fontSize: 15, color: colors.text, height: '100%' },
+  input: { flex: 1, fontFamily: font.regular, fontSize: 15, color: colors.text, height: '100%' },
 });

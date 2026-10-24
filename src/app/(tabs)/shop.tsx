@@ -6,6 +6,7 @@ import { PageHeader } from '../../components/PageHeader';
 import { ProductGrid } from '../../components/ProductGrid';
 import { Screen } from '../../components/Screen';
 import { categories, products, type Category } from '../../data/products';
+import { font } from '../../theme/fonts';
 import { colors } from '../../theme/colors';
 
 type Filter = 'All' | Category;
@@ -48,5 +49,5 @@ const styles = StyleSheet.create({
   chips: { gap: 8, paddingBottom: 16 },
   chip: { paddingHorizontal: 16, paddingVertical: 9, borderRadius: 20, backgroundColor: colors.card },
   chipActive: { backgroundColor: colors.primary },
-  chipText: { fontSize: 13, fontWeight: '600', color: colors.text },
+  chipText: { fontSize: 13, fontFamily: font.semibold, color: colors.text },
 });

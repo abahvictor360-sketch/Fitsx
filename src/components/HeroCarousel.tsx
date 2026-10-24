@@ -4,11 +4,12 @@ import { useRef, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 
 import { getProduct } from '../data/products';
+import { font } from '../theme/fonts';
 import { colors } from '../theme/colors';
 import { ShoeImage } from './ShoeImage';
 
 const SLIDES = [
-  { id: 'velocity-boost', title: 'Run Better.\nBe Stronger.', body: 'Explore Performance\nShoes', variant: 0, gradient: ['#0F4D3A', '#2E9C6A', '#7FE0B0'] },
+  { id: 'velocity-boost', title: 'Run Better.\nBe Stronger.', body: 'Explore Performance\nRunning Shoes', variant: 0, gradient: ['#17573F', '#2F9466', '#8EDDB6'] },
   { id: 'cap-toe-oxford', title: 'Dress\nThe Part.', body: 'Handcrafted leather\nformal shoes', variant: 0, gradient: ['#1E3A2B', '#3E7A55', '#A8D8B9'] },
   { id: 'court-480', title: 'New Season.\nNew Kicks.', body: 'Fresh court classics\nin three colorways', variant: 1, gradient: ['#0A3A2B', '#14724D', '#3FD68C'] },
 ] as const;
@@ -16,7 +17,7 @@ const SLIDES = [
 export function HeroCarousel({ width }: { width: number }) {
   const [index, setIndex] = useState(0);
   const listRef = useRef<FlatList>(null);
-  const height = 170;
+  const height = Math.round(width * 0.56);
 
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const i = Math.round(e.nativeEvent.contentOffset.x / width);
@@ -55,7 +56,7 @@ export function HeroCarousel({ width }: { width: number }) {
                   </Pressable>
                 </View>
                 <View style={styles.art}>
-                  <ShoeImage source={product.variants[item.variant].image} width={width * 0.5} height={height - 30} style={styles.tilt} />
+                  <ShoeImage source={product.variants[item.variant].image} width={width * 0.54} height={height * 0.86} style={styles.tilt} />
                 </View>
               </LinearGradient>
             </View>
@@ -74,8 +75,8 @@ export function HeroCarousel({ width }: { width: number }) {
 const styles = StyleSheet.create({
   slide: { flex: 1, borderRadius: 26, padding: 18, flexDirection: 'row', overflow: 'hidden' },
   copy: { flex: 1, justifyContent: 'center', zIndex: 2 },
-  title: { color: colors.white, fontSize: 24, fontWeight: '800', lineHeight: 28 },
-  body: { color: '#DDF5E9', fontSize: 12, marginTop: 8, lineHeight: 16 },
+  title: { color: colors.white, fontSize: 22, fontFamily: font.bold, lineHeight: 28 },
+  body: { color: '#E4F7ED', fontFamily: font.regular, fontSize: 12, marginTop: 6, lineHeight: 17 },
   cta: {
     marginTop: 14,
     alignSelf: 'flex-start',
@@ -84,8 +85,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 20,
   },
-  ctaText: { color: colors.primary, fontWeight: '700', fontSize: 13 },
-  art: { position: 'absolute', right: 6, top: 10 },
+  ctaText: { color: colors.primary, fontFamily: font.bold, fontSize: 13 },
+  art: { position: 'absolute', right: 2, top: 4 },
   tilt: { transform: [{ rotate: '-8deg' }] },
   dots: { position: 'absolute', bottom: 10, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', gap: 6 },
   dot: { width: 6, height: 6, borderRadius: 3, backgroundColor: 'rgba(255,255,255,0.5)' },

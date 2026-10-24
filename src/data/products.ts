@@ -8,7 +8,7 @@ export type ColorVariant = {
   image: ImageSourcePropType;
 };
 
-export type Category = 'Popular' | 'Men' | 'Women' | 'Formal' | 'Boots' | 'New';
+export type Category = 'Popular' | 'Men' | 'Women' | 'Trail' | 'Formal' | 'New';
 
 export type Product = {
   id: string;
@@ -48,8 +48,8 @@ const img = {
 };
 
 const v = (id: string, name: string, color: string, image: ImageSourcePropType): ColorVariant => ({ id, name, color, image });
-const SNEAKER_SIZES = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12];
-const DRESS_SIZES = [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12];
+const SNEAKER_SIZES = [7, 7.5, 8, 8.5, 9, 9.5, 10];
+const DRESS_SIZES = SNEAKER_SIZES;
 
 export const products: Product[] = [
   {
@@ -154,7 +154,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 65,
     description: 'Layered mesh and suede with a grippy multi-surface outsole — ready for city streets and dirt paths alike.',
-    categories: ['Men', 'Women', 'Popular'],
+    categories: ['Trail', 'Men', 'Women', 'Popular'],
     variants: [v('mocha', 'Mocha / Sand', '#5A3E2B', img.trailMocha)],
     sizes: SNEAKER_SIZES,
   },
@@ -178,7 +178,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 402,
     description: 'Waterproof nubuck leather, padded collar and a rugged lug sole. Built to handle the trail, the worksite and the weekend.',
-    categories: ['Boots', 'Men', 'Popular'],
+    categories: ['Trail', 'Men', 'Popular'],
     variants: [v('wheat', 'Wheat Nubuck', '#C9852F', img.workBoot)],
     sizes: DRESS_SIZES,
   },
@@ -190,7 +190,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 88,
     description: 'Polished calf leather, elastic side gussets and a pull tab for easy on/off. Sharp with suits, sharper with denim.',
-    categories: ['Boots', 'Formal', 'Men'],
+    categories: ['Formal', 'Men'],
     variants: [v('brown', 'Chestnut Brown', '#6B3420', img.chelsea)],
     sizes: DRESS_SIZES,
   },
@@ -256,7 +256,10 @@ export const products: Product[] = [
   },
 ];
 
-export const categories: Category[] = ['Popular', 'Men', 'Women', 'Formal', 'Boots', 'New'];
+/** Category tabs on the home screen (matches the design). */
+export const homeCategories: Category[] = ['Popular', 'Men', 'Women', 'Trail', 'New'];
+/** Filters on the shop screen. */
+export const categories: Category[] = ['Popular', 'Men', 'Women', 'Trail', 'Formal', 'New'];
 
 export const getProduct = (id: string) => products.find((p) => p.id === id);
 
