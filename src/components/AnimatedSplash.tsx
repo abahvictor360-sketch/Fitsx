@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Animated, Easing, Image, Platform, StyleSheet, Text, View } from 'react-native';
 
 import { useAppWidth } from '../hooks';
@@ -13,11 +13,11 @@ const HERO_SHOE = require('../../assets/shoes/shoe-11.webp');
 /** Branded intro shown once on launch, picking up where the native splash leaves off. */
 export function AnimatedSplash({ onFinish }: { onFinish: () => void }) {
   const width = useAppWidth();
-  const logo = useRef(new Animated.Value(0)).current;
-  const shoe = useRef(new Animated.Value(0)).current;
-  const text = useRef(new Animated.Value(0)).current;
-  const progress = useRef(new Animated.Value(0)).current;
-  const exit = useRef(new Animated.Value(1)).current;
+  const [logo] = useState(() => new Animated.Value(0));
+  const [shoe] = useState(() => new Animated.Value(0));
+  const [text] = useState(() => new Animated.Value(0));
+  const [progress] = useState(() => new Animated.Value(0));
+  const [exit] = useState(() => new Animated.Value(1));
 
   useEffect(() => {
     Animated.sequence([

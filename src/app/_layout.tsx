@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AnimatedSplash } from '../components/AnimatedSplash';
 import { MAX_APP_WIDTH } from '../hooks';
+import { AuthProvider } from '../store/AuthContext';
 import { ShopProvider } from '../store/ShopContext';
 import { colors } from '../theme/colors';
 import { fontAssets } from '../theme/fonts';
@@ -28,19 +29,23 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <ShopProvider>
-        <StatusBar style={introDone ? 'dark' : 'light'} />
-        <View style={styles.outer}>
-          <View style={styles.app}>
-            <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
-              <Stack.Screen name="(tabs)" />
-              <Stack.Screen name="product/[id]" />
-              <Stack.Screen name="cart" />
-            </Stack>
-            {!introDone && <AnimatedSplash onFinish={finishIntro} />}
+      <AuthProvider>
+        <ShopProvider>
+          <StatusBar style={introDone ? 'dark' : 'light'} />
+          <View style={styles.outer}>
+            <View style={styles.app}>
+              <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
+                <Stack.Screen name="(tabs)" />
+                <Stack.Screen name="product/[id]" />
+                <Stack.Screen name="cart" />
+                <Stack.Screen name="login" options={{ animation: 'fade' }} />
+                <Stack.Screen name="signup" options={{ animation: 'fade' }} />
+              </Stack>
+              {!introDone && <AnimatedSplash onFinish={finishIntro} />}
+            </View>
           </View>
-        </View>
-      </ShopProvider>
+        </ShopProvider>
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }

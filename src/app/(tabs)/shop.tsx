@@ -1,5 +1,5 @@
 import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { PageHeader } from '../../components/PageHeader';
@@ -13,11 +13,12 @@ type Filter = 'All' | Category;
 
 export default function ShopScreen() {
   const params = useLocalSearchParams<{ category?: string }>();
-  const [filter, setFilter] = useState<Filter>('All');
-
-  useEffect(() => {
-    if (params.category && (categories as string[]).includes(params.category)) setFilter(params.category as Category);
-  }, [params.category]);
+  // A chip the person tapped wins until a new category arrives via the URL (e.g. "View All" on Home).
+  const [picked, setPicked] = useState<{ from?: string; filter: Filter } | null>(null);
+  const fromUrl: Filter =
+    params.category && (categories as string[]).includes(params.category) ? (params.category as Category) : 'All';
+  const filter = picked && picked.from === params.category ? picked.filter : fromUrl;
+  const setFilter = (f: Filter) => setPicked({ from: params.category, filter: f });
 
   const items = useMemo(
     () => (filter === 'All' ? products : products.filter((p) => p.categories.includes(filter))),

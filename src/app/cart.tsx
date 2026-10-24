@@ -9,6 +9,7 @@ import { IconButton } from '../components/IconButton';
 import { Screen } from '../components/Screen';
 import { ShoeImage } from '../components/ShoeImage';
 import { formatPrice, getProduct } from '../data/products';
+import { useAuth } from '../store/AuthContext';
 import { useShop } from '../store/ShopContext';
 import { font } from '../theme/fonts';
 import { colors } from '../theme/colors';
@@ -19,12 +20,17 @@ const SHIPPING_FEE = 9.99;
 export default function CartScreen() {
   const insets = useSafeAreaInsets();
   const { cart, subtotal, updateQuantity, removeFromCart, clearCart } = useShop();
+  const { user } = useAuth();
   const [ordered, setOrdered] = useState(false);
   const shipping = subtotal === 0 || subtotal >= SHIPPING_FREE_OVER ? 0 : SHIPPING_FEE;
   const total = subtotal + shipping;
 
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/'));
   const checkout = () => {
+    if (!user) {
+      router.push({ pathname: '/login', params: { redirect: '/cart' } });
+      return;
+    }
     clearCart();
     setOrdered(true);
   };
@@ -112,7 +118,7 @@ export default function CartScreen() {
               <Text style={styles.totalValue}>{formatPrice(total)}</Text>
             </View>
             <Pressable style={({ pressed }) => [styles.checkout, pressed && { opacity: 0.9 }]} onPress={checkout}>
-              <Text style={styles.checkoutText}>Checkout</Text>
+              <Text style={styles.checkoutText}>{user ? 'Checkout' : 'Sign in to Checkout'}</Text>
               <Feather name="arrow-right" size={18} color={colors.white} />
             </Pressable>
           </View>

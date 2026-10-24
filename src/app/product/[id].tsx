@@ -37,7 +37,7 @@ export default function ProductScreen() {
   const [size, setSize] = useState<number | null>(null);
   const [needSize, setNeedSize] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
-  const toast = useRef(new Animated.Value(0)).current;
+  const [toast] = useState(() => new Animated.Value(0));
   const toastTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => () => clearTimeout(toastTimer.current), []);

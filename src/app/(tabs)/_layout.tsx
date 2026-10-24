@@ -1,9 +1,14 @@
+import { Redirect } from 'expo-router';
 import { Tabs } from 'expo-router/js-tabs';
 
 import { TabBar } from '../../components/TabBar';
+import { useAuth } from '../../store/AuthContext';
 import { colors } from '../../theme/colors';
 
 export default function TabsLayout() {
+  const { onboarded } = useAuth();
+  if (!onboarded) return <Redirect href="/login" />;
+
   return (
     <Tabs
       tabBar={(props) => <TabBar {...props} />}
